@@ -19,18 +19,18 @@ def test_all_scenaries():
     # Добавили сьюту
     SuiteTools.add_suite(new_suite, PROJECT_ID)
     # Проверка через get запрос что она существует
-    soft_assert(SuiteTools.get_suite(new_suite, new_suite.suite_id) == 200)
+    assert (SuiteTools.get_suite(new_suite, new_suite.suite_id) == 200)
     # Создаем новый обьект секции
     section = Sections(new_suite.suite_id)
     # Добавляем в сьюту секцию
     SectionTools.add_sections(section)
     # Проверяем создана ли секция при помощи get запроса
-    soft_assert(SectionTools.get_section(section) == 200)
+    assert(SectionTools.get_section(section) == 200)
     # Добавляем кейс в секцию
     test_case = TestCase()
     CaseTools.add_case(test_case, section)
     # Проверяем что кейс создан
-    soft_assert((CaseTools.get_case(test_case)).status_code == 200)
+    assert((CaseTools.get_case(test_case)).status_code == 200)
     # Проверяем что данные в кейсе соответствуют
     soft_assert(CaseTools.get_case(test_case).json().get('title') == test_case.title)
     soft_assert(CaseTools.get_case(test_case).json().get('template_id') == 1)
@@ -38,7 +38,7 @@ def test_all_scenaries():
     test_run = TestRun()
     RunTools.add_run(test_run, new_suite)
     # Проверяем что ран создан
-    soft_assert(RunTools.get_run(test_run.run_id) == 200)
+    assert(RunTools.get_run(test_run.run_id) == 200)
     # Добавляем случайный результат кейсу
     CaseTools.add_result_for_case(test_case, test_run.run_id)
     # Удаляем тест ран
