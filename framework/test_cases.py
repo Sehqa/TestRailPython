@@ -2,6 +2,7 @@ from random import randint
 
 
 class TestCase(object):
+
     def __init__(self):
         self.number = randint(1, 5000)
         self.title = "Auto_" + str(self.number)
